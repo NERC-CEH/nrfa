@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <!-- load the Leaflet stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <!-- Load a simple stylesheet to layout the page elements. -->
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="info">
+        <h1>NRFA API JavaScript example</h1>
+        <p>This example shows how to add NRFA live data sites to a <a href="https://leafletjs.com"
+                target="_blank">Leaflet map</a>. Click on station marker on the map to plot the <a
+                href="https://nrfa.ceh.ac.uk/catchment-rainfall" target="_blank">catchment daily rainfall</a> (CDR) and
+            <a href="https://nrfa.ceh.ac.uk/gauged-daily-flow-data" target="_blank">gauged daily flow</a> (GDF)
+            data to a <a href="https://plot.ly/javascript/" target="_blank">Plotly map</a>.</p>
+        <p>Use this webservice, which returns JSON, to access all the NRFA stations: <a
+                href="https://nrfaapps.ceh.ac.uk/nrfa/ws/station-info?station=*&format=json-object&fields=station-search"
+                target="_blank"><code>https://nrfaapps.ceh.ac.uk/nrfa/ws/station-info?station=*&format=json-object&fields=station-search</code></a>
+        </p>
+        <p>Click on a map marker to view all the attributes for a station that are stored in the above json file, and
+            view a plot of the CDR and GDF data. An example call to get the GDF time-series data for station 30006 is:
+            <a href="https://nrfaapps.ceh.ac.uk/nrfa/json/gdf-live?station=30006&start-date=2017-01-01&end-date=2019-12-31"
+                target="_blank"><code>https://nrfaapps.ceh.ac.uk/nrfa/json/<span class="red">gdf-live</span>?station=<span
+                    class="red">30006</span>&start-date=<span class="red">2017-01-01</span>&end-date=<span
+                    class="red">2019-12-31</span></code></a>.</p>
+        <p>The items in red above are the variables you can change. They are the dataset (CDR or GDF), the station ID
+            and the start and end dates.</p>
+        <p>The GDF parameter is <code>gdf-live</code>, but there is also <code>gdf-nhmp</code> that provides data up
+            until the end of last month
+            for <a href="https://nrfa.ceh.ac.uk/nhmp" target="_blank">NHMP index sites</a>.</p>
+        <p>The CDR parameter is <code>nhmp-spi-cdr</code>.</p>
+        <p>This example uses <a href="https://api.jquery.com/" target="_blank">jQuery</a>, <a
+                href="https://momentjs.com/" target="_blank">Moment.js</a>, <a href="https://leafletjs.com"
+                target="_blank">Leaflet</a> and <a href="https://plot.ly/javascript/" target="_blank">Plotly</a>.</p>
+        <p>View the Javascript (.js) source code for more infomation. You can view the <code>console.log</code> at each
+            step of the JavaScript code by hitting F12, which will open the browser's developer tools, then click on the
+            Console button.</p>
+    </div>
+    <div id="mapContainer">
+        <h2>Leaflet map</h2>
+        <div id="mapDiv"></div>
+    </div>
+    <div id="stationInfo"></div>
+    <div id="plotlyContainer">
+        <h2>Plotly chart</h2>
+        <p>The year range can be up to five years.
+            <label for="startYear">Start year: <input type="number" min="1800" max="2019" id="startYear"
+                    value="2017" /></label>
+            <label for="endYear">End year: <input type="number" min="1800" max="2019" id="endYear"
+                    value="2019" /></label>
+            <button id="updateDateRange">Update</button></p>
+        <small class="red" id="graphError"></small>
+        <div id="plotlyDiv"></div>
+        <p>Click on the dataset names on the graph legend to turn them on and off.</p>
+    </div>
+
+    <footer class="clear">
+        <p>&copy; <a href="https://www.ceh.ac.uk" target="_blank">UK Centre for Ecology and Hydrology 2019</a></p>
+    </footer>
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Load the application's code -->
+    <script src="app.js"></script>
+    <!-- Load Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- Load Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+        integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+        crossorigin=""></script>
+    <!-- Load Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</body>
+
+</html>

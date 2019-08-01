@@ -1,0 +1,54 @@
+/* Some simple styling just so everything fits nicely on the page. */
+body {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+h1,
+h2 {
+    margin: 0;
+}
+
+#info,
+#mapContainer,
+#stationInfo,
+#plotlyContainer {
+    width: 48%;
+    height: 400px;
+    float: left;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#info,
+#stationInfo {
+    overflow-y: auto;
+}
+
+/* Leaflet and Plotly require width and height to be set, else they won't display. */
+#mapDiv {
+    height: 380px;
+    width: 100%;
+}
+
+#plotlyDiv {
+    height: 300px;
+    width: 100%;
+}
+
+.red {
+    color: red;
+}
+
+.clear {
+    clear: both;
+}
+
+code {
+    font-size: 1.2em;
+}
+
+footer {
+    display: block;
+    margin-top: 1em;
+    padding-top: 1em;
+}
